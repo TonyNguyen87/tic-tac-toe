@@ -7,8 +7,10 @@ class ComputerPlayer
 		@piece
 	end
 
-	def take_turn(available_moves)
-		choice = available_moves.sample
-		choice
+	def take_turn(board)
+		choice = board.available_moves.sample
+		piece = choice - 1
 	end
+
+
 end

@@ -9,17 +9,17 @@ class Board
 
 	def available_moves
 		@board.select { |piece| piece.is_a?(Fixnum) }
-		-1
+		# -1
 		# binding.pry
 	end	
-
+	
 	def display_board
  		 puts "
-    #{board[0]} | #{board[1]} | #{board[2]}
+    #{@board[0]} | #{@board[1]} | #{@board[2]}
     -- --- --
-    #{board[3]} | #{board[4]} | #{board[5]}
+    #{@board[3]} | #{@board[4]} | #{@board[5]}
     -- --- --
-    #{board[6]} | #{board[7]} | #{board[8]}
+    #{@board[6]} | #{@board[7]} | #{@board[8]}
     "
 	end
 end

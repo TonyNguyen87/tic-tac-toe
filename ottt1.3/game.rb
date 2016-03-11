@@ -1,3 +1,7 @@
+require "pry"
+
+class Game
+
 WINS = [[1,2,3],
         [4,5,6],
         [7,8,9],
@@ -6,8 +10,7 @@ WINS = [[1,2,3],
         [3,6,9],
         [1,5,9],
         [3,5,7]]
-
-class Game
+        
 	def initialize(player1, player2, board)
 		@player_1 = player1
 		@player_2 = player2
@@ -16,15 +19,15 @@ class Game
 	end
 	# binding.pry
 
-	def greeting
-		puts
-		puts "Welcome to Tic Tac Toe"
-		puts "First to get three in a row wins"
-	end
-
-	# def board
-	# 	board = @board.board
+	# def greeting
+	# 	puts
+	# 	puts "Welcome to Tic Tac Toe"
+	# 	puts "First to get three in a row wins"
 	# end
+
+	def board
+		board = @board.board
+	end
 
 	def win?
   		WINS.any? do |x, y, z|
@@ -45,9 +48,9 @@ class Game
 	end
 
 	def play
-		greeting
 		@board.display_board
 		current_player = @player1
+		binding.pry
 		until game_over?
 			move = current_player.take_turn(@board)
 			@board[move] = current_player.piece

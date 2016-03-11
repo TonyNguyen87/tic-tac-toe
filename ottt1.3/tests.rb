@@ -10,23 +10,24 @@ require "./game"
 class HumanPlayerTest < Minitest::Test
 	def test_can_build_human_player
 		assert HumanPlayer.new
-		assert HumanPlayer.new ("X")
+		assert HumanPlayer.new("X")
 	end
 
-	def test_can_human_know_piece
-		tony = HumanPlayer.new
-		tony.stub :puts, nil do
-		  tony.stub :gets, "X" do
-			tony.choose_piece
-		  end
-		end
-		assert tony.piece == "X"
-	end
+	# def test_can_human_know_piece
+	# 	tony = HumanPlayer.new
+	# 	tony.stub :puts, nil do
+	# 	  tony.stub :gets, "X" do
+	# 		tony.choose_piece
+	# 	  end
+	# 	end
+	# 	assert tony.piece == "X"
+	# end
 
 	def test_cannot_make_illegal_moves
 		tony = HumanPlayer.new
+		board = Board.new
 		tony.stub :gets, "7" do
-			move = tony.take_turn
+			move = tony.take_turn(board)
 			assert move.is_a?(Fixnum)
 			assert (1..9).include?(move)
 		end
@@ -41,17 +42,18 @@ class ComputerPlayerTest < Minitest::Test
 
 	def test_can_computer_take_turn
 		cpu = ComputerPlayer.new
-		array = [1, 2, 3, 4]
-		assert = cpu.take_turn(array)
+		board = Board.new
+		available_moves = [1, 2, 3, 4]
+		assert = cpu.take_turn(board)
 	end
 
-	def test_can_cpu_know_piece
-		cpu = ComputerPlayer.new
-		  cpu.stub :gets, "O" do
-			cpu.choose_piece
-			  end
-		assert cpu.piece == "O"
-	end
+	# def test_can_cpu_know_piece
+	# 	cpu = ComputerPlayer.new
+	# 	  cpu.stub :gets, "O" do
+	# 		cpu.choose_piece
+	# 		  end
+	# 	assert cpu.piece == "O"
+	# end
 end
 
 
@@ -84,8 +86,11 @@ class GameTests < Minitest::Test
 	end
 
 	def test_can_win?
+		tony = HumanPlayer.new
+		madison = HumanPlayer.new
 		board = ["X", 2, 3, "X", 5, 6, "X", 7, 8 ,"X"]
-		winner = @game.win?(board)
+		game = Game.new(tony, madison, board)
+		winner = game.win?
 		assert winner
 	end
 

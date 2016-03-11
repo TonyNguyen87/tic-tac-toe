@@ -22,14 +22,14 @@ def start
 	puts "2. Player vs CPU"
 	puts "3. CPU VS CPU"
 	choice = gets.chomp.to_i
-	player1_piece = choose_piece(player1)
+	# player1_piece = choose_piece(player1)
 		if 
 			choice == 1
-			player1 = Humanplayer.new("X") 
-			player2 = Humanplayer.new("O")
+			player1 = HumanPlayer.new("X") 
+			player2 = HumanPlayer.new("O")
 		elsif 
 			choice == 2
-			player1 = Humanplayer.new("X")
+			player1 = HumanPlayer.new("X")
 			player2 = ComputerPlayer.new("O")
 		else
 			choice == 3
@@ -38,12 +38,14 @@ def start
 		end
 	choice
 	board = Board.new
-  Game.new(player1, player2, board)
+  game = Game.new(player1, player2, board)
+  game.play
 end
 
-player1 = HumanPlayer.new 
-player2 = HumanPlayer.new
-board = Board.new
-game = Game.new(player1, player2, board)
-game.play
+start
+# player1 = HumanPlayer.new 
+# player2 = HumanPlayer.new
+# board = Board.new
+# game = Game.new(player1, player2, board)
+# game.play
 

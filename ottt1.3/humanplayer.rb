@@ -1,6 +1,5 @@
 class HumanPlayer
-	def initialize(piece, name="The nameless one")
-		@name = name
+	def initialize(piece=nil)
 		@piece = piece
 	end
 
@@ -16,6 +15,6 @@ class HumanPlayer
 			puts "You have to choose an available position"
 			choice = gets.chomp.to_i
 		end
-		choice #- 1
+		piece = choice - 1
 	end
 end
