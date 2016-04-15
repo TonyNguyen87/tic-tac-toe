@@ -3,15 +3,6 @@ require "./humanplayer"
 require "./computerplayer"
 require "./game"
 
-
-# ## MAYBE??
-
-# def greeting
-# 		puts
-# 		puts "Welcome to Tic Tac Toe"
-# 		puts "First to get three in a row wins"
-# end
-
 def start
 	puts
 	puts "Welcome to Tic Tac Toe"
@@ -23,8 +14,7 @@ def start
 	puts "3. CPU VS CPU"
 	choice = gets.chomp.to_i
 	# player1_piece = choose_piece(player1)
-		if 
-			choice == 1
+		if  choice == 1
 			player1 = HumanPlayer.new("X") 
 			player2 = HumanPlayer.new("O")
 		elsif 
@@ -40,6 +30,21 @@ def start
 	board = Board.new
   game = Game.new(player1, player2, board)
   game.play
+  play_again?
+end
+
+def play_again?
+	puts "Would you like to play again? Y/N"
+	choice = gets.chomp.to_s.upcase
+	until choice == "Y" || "N"
+		puts "Please choose Y or N"
+		input = gets.chomp.upcase		
+		if choice == "Y"
+			start
+		else
+			exit
+		end
+	end
 end
 
 start

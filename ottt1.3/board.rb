@@ -1,26 +1,51 @@
 class Board
+
+WINS = [[1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [1,4,7],
+        [2,5,8],
+        [3,6,9],
+        [1,5,9],
+        [3,5,7]]
+        
 	def initialize
-		@board = (1..9).to_a
+		@space = (1..9).to_a
 	end
 
-	def board
-		@board
+	def place_piece(current_player, move)
+		position = move -= 1
+		@space[position] = current_player.piece
 	end
 
 	def available_moves
-		@board.select { |piece| piece.is_a?(Fixnum) }
-		# -1
-		# binding.pry
+		@space.select { |piece| piece.is_a?(Fixnum) }
 	end	
 	
 	def display_board
  		 puts "
-    #{@board[0]} | #{@board[1]} | #{@board[2]}
+    #{@space[0]} | #{@space[1]} | #{@space[2]}
     -- --- --
-    #{@board[3]} | #{@board[4]} | #{@board[5]}
+    #{@space[3]} | #{@space[4]} | #{@space[5]}
     -- --- --
-    #{@board[6]} | #{@board[7]} | #{@board[8]}
+    #{@space[6]} | #{@space[7]} | #{@space[8]}
     "
 	end
+
+
+	def win?
+  		WINS.any? do |x, y, z|
+    	@space[x - 1] == @space[y - 1] && @space[y - 1] == @space[z - 1]
+  		end
+  	end
+
+	def draw?
+		@space.all? { |piece| piece.is_a?(String) }
+	end
+
+	def game_over?
+		win? || draw?
+	end
+
 end
 

@@ -15,6 +15,6 @@ class HumanPlayer
 			puts "You have to choose an available position"
 			choice = gets.chomp.to_i
 		end
-		piece = choice - 1
+		choice
 	end
 end
