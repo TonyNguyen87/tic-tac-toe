@@ -34,15 +34,15 @@ end
 
 def play_again?
 	puts "Would you like to play again? Y/N"
-	choice = gets.chomp.to_s.upcase
-	until choice == ["y", "n"].include?
+	choice = gets.chomp.upcase
+	until ["Y", "N"].include?(choice)
 		puts "Please choose Y or N"
-		input = gets.chomp.upcase		
-		if choice == "Y"
-			start
-		else
-			exit
-		end
+		input = gets.chomp.upcase	
+	end	
+	if choice == "Y"
+		start
+	else choice == "N"
+		exit
 	end
 end
 
