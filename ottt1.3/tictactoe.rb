@@ -13,7 +13,6 @@ def start
 	puts "2. Player vs CPU"
 	puts "3. CPU VS CPU"
 	choice = gets.chomp.to_i
-	# player1_piece = choose_piece(player1)
 		if  choice == 1
 			player1 = HumanPlayer.new("X") 
 			player2 = HumanPlayer.new("O")
@@ -36,7 +35,7 @@ end
 def play_again?
 	puts "Would you like to play again? Y/N"
 	choice = gets.chomp.to_s.upcase
-	until choice == "Y" || "N"
+	until choice == ["y", "n"].include?
 		puts "Please choose Y or N"
 		input = gets.chomp.upcase		
 		if choice == "Y"

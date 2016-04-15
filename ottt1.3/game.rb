@@ -9,11 +9,9 @@ class Game
 	end
 
 
-	# def switch_player(current_player)
-	# 	current_player == @player_1 ? 
-	# 	current_player = @player_2 : 
-	# 	current_player = @player_1
-	# end
+	def switch_player(player)
+		player == @player_1 ? @player_2 : @player_1
+	end
 
 	def play
 		@board.display_board
@@ -21,24 +19,17 @@ class Game
 		until @board.game_over?
 			move = current_player.take_turn(@board)
 			@board.place_piece(current_player, move)
-			# switch_player(current_player)
-			current_player == @player_1 ? 
-			current_player = @player_2 : 
-			current_player = @player_1
+			current_player = switch_player(current_player)
 			@board.display_board
 		end
 		postmortem(current_player)
 	end
 
 	def postmortem(current_player)
-		# switch_player(current_player)
-		current_player == @player_1 ? 
-		current_player = @player_2 : 
-		current_player = @player_1
+		player = switch_player(current_player)
 		if @board.win?
-		# current_player = switch_player(current_player)
 			@board.display_board
-			puts "CONGRATULATIONS YOU WIN PLAYER #{current_player.piece}!!"
+			puts "CONGRATULATIONS YOU WIN PLAYER #{player.piece}!!"
 		else
 			@board.display_board
 			puts "ITS A DRAW"
